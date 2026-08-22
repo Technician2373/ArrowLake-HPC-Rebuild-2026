@@ -1,0 +1,13 @@
+# Startup Scripts Collection
+
+This file contains all dependency and initialization scripts used during the Arrow Lake HPC rebuild. Multiple versions exist due to system reinstalls, kernel changes, Secure Boot fixes, and toolchain updates.
+
+All scripts will be collected here first, then merged into a single validated installer script.
+
+## Scripts to Add
+- apt_pkgs_installation.sh
+- apt_pkgs_installation.txt
+- Install-Master-Script.sh
+- Install-script-master.sh
+- packages-installer.txt
+- Any other partial scripts you find
