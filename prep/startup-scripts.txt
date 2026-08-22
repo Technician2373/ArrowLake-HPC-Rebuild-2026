@@ -9,5 +9,1291 @@ All scripts will be collected here first, then merged into a single validated in
 - apt_pkgs_installation.txt
 - Install-Master-Script.sh
 - Install-script-master.sh
-- packages-installer.txt
+- packages-installer.txt#!/usr/bin/env bash
+set -e
+
+echo "=== Brian's Linux Workstation Bootstrap ==="###############################################################################
+###############################################################################
+##              PACKAGES AND DEPENDENCY INSTALLER SCRIPT                     ##
+###############################################################################
+###############################################################################
+
+
+ #!/usr/bin/env bash
+set -e
+
+echo "Updating system..."
+sudo apt update -y && sudo apt full-upgrade -y
+sleep=3
+
+###############################################
+# CORE BUILD TOOLCHAIN
+###############################################
+echo "Installing core build tools..."
+sudo apt install -y \
+    build-essential cmake make pkg-config \
+    gcc g++ gdb ltrace strace \
+    libncurses-dev libelf-dev libssl-dev libdw-dev dwarves \
+    bison flex libcap-dev libpcre2-dev
+sleep=3
+
+###############################################
+# KERNEL DEVELOPMENT + DEBUGGING
+###############################################
+echo "Installing kernel dev + debugging tools..."
+sudo apt install -y \
+    linux-headers-$(uname -r) \
+    pahole \
+    systemtap \
+    crash \
+    kexec-tools \
+    elfutils \
+    libtraceevent-dev \
+    libtracefs-dev
+sleep=3
+
+###############################################
+# NETWORKING + DIAGNOSTICS
+###############################################
+echo "Installing networking + diagnostics..."
+sudo apt install -y \
+    traceroute nmap wireshark \
+    net-tools wavemon \
+    iw rfkill \
+    iftop nvtop iotop atop htop btop \
+    tcpdump mtr iperf3 ethtool
+sleep=3
+
+###############################################
+# FILESYSTEM + DISK TOOLS
+###############################################
+echo "Installing filesystem + disk tools..."
+sudo apt install -y \
+    gparted parted gdisk fdisk \
+    dosfstools cryptsetup lvm2 \
+    efibootmgr sbsigntool mokutil \
+    nvme-cli rsync tar \
+    exfatprogs btrfs-progs xfsprogs
+sleep=3
+
+###############################################
+# DEVELOPMENT ENVIRONMENT
+###############################################
+echo "Installing developer environment..."
+sudo apt install -y \
+    git wget curl fastfetch \
+    python3 python3-pip python3-venv \
+    nodejs npm \
+    vulkan-tools clinfo \
+    neovim vim micro fzf bat tree locate \
+    jq ripgrep
+sleep=3
+
+###############################################
+# SYSTEM UTILITIES + SECURITY
+###############################################
+echo "Installing system utilities..."
+sudo apt install -y \
+    fail2ban timeshift snapd \
+    ufw apparmor-utils \
+    lm-sensors powertop
+sleep=3
+
+###############################################
+# VIRTUALIZATION + CONTAINERS
+###############################################
+echo "Installing virtualization tools..."
+sudo apt install -y \
+    qemu-system-x86 qemu-utils \                                                            
+    libvirt-daemon-system libvirt-clients \
+    virt-manager bridge-utils \
+    docker.io docker-compose
+sleep=3
+
+###############################################
+# OPTIONAL: PERFORMANCE + BENCHMARKING
+###############################################
+echo "Installing performance tools..."
+sudo apt install -y \
+    stress-ng sysbench \
+    glmark2 mesa-utils \
+    perf-tools-unstable
+sleep=5
+
+echo "Done. All dependencies installed."
+    
+    
+    
+ 
+
+echo "Updating system..."#!/usr/bin/env bash
+set -e
+
+echo "=== Brian's Linux Workstation Bootstrap ==="
+echo "Updating system..."
+sudo apt update -y && sudo apt full-upgrade -y
+
+###############################################
+# SECTION 1 — Everyday Desktop Tools
+###############################################
+echo "Installing everyday desktop tools..."
+sudo apt install -y \
+    gparted \
+    wireshark \
+    synaptic \
+    fastfetch \
+    htop \
+    atop \
+    iftop \
+    iotop \
+    btop \
+    lm-sensors \
+    timeshift \
+    zram-config \
+    ubuntu-restricted-extras \
+    ubuntu-restricted-addons \
+    libdvd-pkg
+
+###############################################
+# SECTION 2 — Editors + Shells
+###############################################
+echo "Installing editors and shells..."
+sudo apt install -y \
+    gedit \
+    kate \
+    mousepad \
+    vim \
+    neovim \
+    micro \
+    fzf \
+    bash-completion \
+    fish
+
+###############################################
+# SECTION 3 — Core Build System
+###############################################
+echo "Installing core build tools..."
+sudo apt install -y \
+    build-essential \
+    cmake \
+    make \
+    ninja-build \
+    pkg-config \
+    dpkg \
+    dpkg-dev \
+    git \
+    gdb \
+    ltrace \
+    strace \
+    bison \
+    flex \
+    libncurses-dev \
+    libelf-dev \
+    libssl-dev \
+    libdw-dev \
+    dwarves \
+    libcap-dev \
+    libpcre2-dev \
+    libmpfr-dev \
+    libgmp-dev \
+    libisl-dev \
+    libz-dev \
+    libzstd-dev \
+    liblzma-dev \
+    libevent-dev \
+    libjson-c-dev \
+    libyaml-dev \
+    libxml2-dev \
+    libffi-dev \
+    libedit-dev \
+    libboost-all-dev \
+    clang \
+    clang-format \
+    clang-tidy \
+    clang-tools \
+    llvm \
+    llvm-dev \
+    gcc \
+    g++ \
+    gcc-multilib \
+    g++-multilib \
+    lib32gcc-s1 \
+    lib32stdc++6 \
+    libasan6 \
+    libtsan2 \
+    libubsan1 \
+    liblsan0
+
+###############################################
+# SECTION 4 — Kernel Development + Debugging
+###############################################
+echo "Installing kernel dev + debugging tools..."
+sudo apt install -y \
+    linux-headers-$(uname -r) \
+    linux-tools-common \
+    linux-tools-$(uname -r) \
+    linux-source \
+    libudev-dev \
+    libpci-dev \
+    libiberty-dev \
+    libcap-ng-dev \
+    libdw-dev \
+    libdw1 \
+    dwarves \
+    pahole \
+    bc \
+    kmod \
+    ccache \
+    libncurses5-dev \
+    libncursesw5-dev \
+    zstd \
+    lz4 \
+    libpopt-dev \
+    libtraceevent-dev \
+    libtracefs-dev \
+    libnuma-dev \
+    numactl \
+    libunwind-dev \
+    libmount-dev \
+    libfdt-dev \
+    libfuse-dev \
+    libglib2.0-dev \
+    libaudit-dev \
+    libslang2-dev \
+    libreadline-dev \
+    libbfd-dev \
+    binutils-dev \
+    systemtap \
+    systemtap-runtime \
+    systemtap-sdt-dev \
+    elfutils \
+    crash \
+    makedumpfile \
+    kexec-tools \
+    trace-cmd \
+    msr-tools \
+    cpuid \
+    hwloc \
+    powertop \
+    tuned \
+    thermald \
+    sysstat \
+    auditd \
+    dracut \
+    dracut-core \
+    libbpf-dev \
+    bpftrace \
+    bpfcc-tools
+
+###############################################
+# SECTION 5 — Networking + Diagnostics
+###############################################
+echo "Installing networking + diagnostics..."
+sudo apt install -y \
+    traceroute \
+    nmap \
+    net-tools \
+    wavemon \
+    iw \
+    rfkill \
+    ftp \
+    curl \
+    wget \
+    tcpdump \
+    mtr \
+    iperf3 \
+    ethtool \
+    nvtop \
+    fail2ban \
+    ufw \
+    apparmor-utils \
+    linssid
+
+###############################################
+# SECTION 6 — Filesystem + Disk Tools
+###############################################
+echo "Installing filesystem + disk tools..."
+sudo apt install -y \
+    mount \
+    parted \
+    gdisk \
+    fdisk \
+    dosfstools \
+    cryptsetup \
+    lvm2 \
+    efibootmgr \
+    sbsigntool \
+    mokutil \
+    nvme-cli \
+    rsync \
+    tar \
+    exfatprogs \
+    xfsprogs \
+    btrfs-progs \
+    btrfsmaintenance
+
+###############################################
+# SECTION 7 — Vulkan / SPIR-V / Shader Tools
+###############################################
+echo "Installing Vulkan/SPIR-V stack..."
+sudo apt install -y \
+    vulkan-tools \
+    intel-gpu-tools \
+    clinfo \
+    libnss3 \
+    libnss3-tools \
+    mesa-utils \
+    mesa-common-dev \
+    libgl1-mesa-dev \
+    libegl1-mesa-dev \
+    libgles2-mesa-dev \
+    libdrm-dev \
+    libx11-dev \
+    libx11-xcb-dev \
+    libxcb1-dev \
+    libxcb-glx0-dev \
+    libxcb-keysyms1-dev \
+    libxcb-randr0-dev \
+    libxcb-shape0-dev \
+    libxcb-sync-dev \
+    libxcb-xfixes0-dev \
+    libxrandr-dev \
+    libxinerama-dev \
+    libxcursor-dev \
+    libxdamage-dev \
+    libxext-dev \
+    libxfixes-dev \
+    libwayland-dev \
+    glslang-tools \
+    apitrace
+
+###############################################
+# SECTION 8 — FFmpeg + GStreamer + Media Stack
+###############################################
+echo "Installing media stack (FFmpeg + GStreamer + Intel Media)..."
+sudo apt install -y \
+    ffmpeg \
+    libx264-dev \
+    libx265-dev \
+    libvpx-dev \
+    libaom-dev \
+    libdav1d-dev \
+    libmp3lame-dev \
+    libopus-dev \
+    libvorbis-dev \
+    libtheora-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libwebp-dev \
+    libopenjp2-7-dev \
+    libtiff-dev \
+    gstreamer1.0-tools \
+    libgstreamer1.0-dev \
+    libgstreamer-plugins-base1.0-dev \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-ugly \
+    gstreamer1.0-libav \
+    gstreamer1.0-vaapi \
+    python3-gst-1.0 \
+    libva-dev \
+    intel-media-va-driver-non-free \
+    libvpl-dev \
+    libvpl-tools
+
+###############################################
+# SECTION 9 — Compute Stack (CLEANED)
+###############################################
+echo "Installing compute stack..."
+sudo apt install -y \
+    ocl-icd-opencl-dev \
+    libhwloc-dev \
+    libomp-dev \
+    libtbb-dev \
+    libdnnl-dev \
+    libmkl-full-dev \
+    libmkl-intel-thread \
+    libmkl-core \
+    libfabric-dev \
+    rdma-core \
+    libibverbs-dev \
+    libpsm2-dev \
+    libopencv-dev \
+    python3-opencv \
+    python3-numpy \
+    python3-scipy \
+    python3-pandas \
+    python3-protobuf \
+    python3-onnx \
+    python3-onnxruntime \
+    python3-tqdm \
+    python3-requests \
+    python3-pybind11 \
+    python3-pillow \
+    python3-yaml \
+    python3-setuptools \
+    python3-wheel \
+    python3-dev
+
+###############################################
+# SECTION 10 — Virtualization + Containers
+###############################################
+echo "Installing virtualization + containers..."
+sudo apt install -y \
+    qemu-system-x86 \
+    qemu-utils \
+    libvirt-daemon-system \
+    libvirt-clients \
+    virt-manager \
+    bridge-utils \
+    docker.io \
+    docker-compose
+
+###############################################
+# SECTION 11 — Performance + Benchmarking
+###############################################
+echo "Installing performance + benchmarking tools..."
+sudo apt install -y \
+    stress-ng \
+    sysbench \
+    glmark2 \
+    perf-tools-unstable
+
+###############################################
+# SECTION 12 — Optional / HPC / Experimental
+###############################################
+echo "Optional/HPC/experimental section (placeholder)..."
+
+###############################################
+# SECTION 13 — TBD Playground
+###############################################
+echo "Section 13 (TBD playground) reserved for future experiments..."
+
+echo "=== All tools installed. Brian's Toolchain Ready ==="
+
+
+sudo apt update -y && sudo apt full-upgrade -y
+
+###############################################
+# SECTION 1 — Everyday Desktop Tools
+###############################################
+echo "Installing everyday desktop tools..."
+sudo apt install -y \
+    gparted \
+    wireshark \
+    synaptic \
+    fastfetch \
+    htop \
+    atop \
+    iftop \
+    iotop \
+    btop \
+    lm-sensors \
+    timeshift \
+    zram-config \
+    ubuntu-restricted-extras \
+    ubuntu-restricted-addons \
+    libdvd-pkg
+
+###############################################
+# SECTION 2 — Editors + Shells
+###############################################
+echo "Installing editors and shells..."
+sudo apt install -y \
+    gedit \
+    kate \
+    mousepad \
+    vim \
+    neovim \
+    micro \
+    fzf \
+    bash-completion \
+    fish
+
+###############################################
+# SECTION 3 — Core Build System
+###############################################
+echo "Installing core build tools..."
+sudo apt install -y \
+    build-essential \
+    cmake \
+    make \
+    ninja-build \
+    pkg-config \
+    dpkg \
+    dpkg-dev \
+    git \
+    gdb \
+    ltrace \
+    strace \
+    bison \
+    flex \
+    libncurses-dev \
+    libelf-dev \
+    libssl-dev \
+    libdw-dev \
+    dwarves \
+    libcap-dev \
+    libpcre2-dev \
+    libmpfr-dev \
+    libgmp-dev \
+    libisl-dev \
+    libz-dev \
+    libzstd-dev \
+    liblzma-dev \
+    libevent-dev \
+    libjson-c-dev \
+    libyaml-dev \
+    libxml2-dev \
+    libffi-dev \
+    libedit-dev \
+    libboost-all-dev \
+    clang \
+    clang-format \
+    clang-tidy \
+    clang-tools \
+    llvm \
+    llvm-dev \
+    gcc \
+    g++ \
+    gcc-multilib \
+    g++-multilib \
+    lib32gcc-s1 \
+    lib32stdc++6 \
+    libasan6 \
+    libtsan2 \
+    libubsan1 \
+    liblsan0
+
+###############################################
+# SECTION 4 — Kernel Development + Debugging
+###############################################
+echo "Installing kernel dev + debugging tools..."
+sudo apt install -y \
+    linux-headers-$(uname -r) \
+    linux-tools-common \
+    linux-tools-$(uname -r) \
+    linux-source \
+    libudev-dev \
+    libpci-dev \
+    libiberty-dev \
+    libcap-ng-dev \
+    libdw-dev \
+    libdw1 \
+    dwarves \
+    pahole \
+    bc \
+    kmod \
+    ccache \
+    libncurses5-dev \
+    libncursesw5-dev \
+    zstd \
+    lz4 \
+    libpopt-dev \
+    libtraceevent-dev \
+    libtracefs-dev \
+    libnuma-dev \
+    numactl \
+    libunwind-dev \
+    libmount-dev \
+    libfdt-dev \
+    libfuse-dev \
+    libglib2.0-dev \
+    libaudit-dev \
+    libslang2-dev \
+    libreadline-dev \
+    libbfd-dev \
+    binutils-dev \
+    systemtap \
+    systemtap-runtime \
+    systemtap-sdt-dev \
+    elfutils \
+    crash \
+    makedumpfile \
+    kexec-tools \
+    trace-cmd \
+    msr-tools \
+    cpuid \
+    hwloc \
+    powertop \
+    tuned \
+    thermald \
+    sysstat \
+    auditd \
+    dracut \
+    dracut-core \
+    libbpf-dev \
+    bpftrace \
+    bpfcc-tools
+
+###############################################
+# SECTION 5 — Networking + Diagnostics
+###############################################
+echo "Installing networking + diagnostics..."
+sudo apt install -y \
+    traceroute \
+    nmap \
+    net-tools \
+    wavemon \
+    iw \
+    rfkill \
+    ftp \
+    curl \
+    wget \
+    tcpdump \
+    mtr \
+    iperf3 \
+    ethtool \
+    nvtop \
+    fail2ban \
+    ufw \
+    apparmor-utils \
+    linssid
+
+###############################################
+# SECTION 6 — Filesystem + Disk Tools
+###############################################
+echo "Installing filesystem + disk tools..."
+sudo apt install -y \
+    mount \
+    parted \
+    gdisk \
+    fdisk \
+    dosfstools \
+    cryptsetup \
+    lvm2 \
+    efibootmgr \
+    sbsigntool \
+    mokutil \
+    nvme-cli \
+    rsync \
+    tar \
+    exfatprogs \
+    xfsprogs \
+    btrfs-progs \
+    btrfsmaintenance
+
+###############################################
+# SECTION 7 — Vulkan / SPIR-V / Shader Tools
+###############################################
+echo "Installing Vulkan/SPIR-V stack..."
+sudo apt install -y \
+    vulkan-tools \
+    intel-gpu-tools \
+    clinfo \
+    libnss3 \
+    libnss3-tools \
+    mesa-utils \
+    mesa-common-dev \
+    libgl1-mesa-dev \
+    libegl1-mesa-dev \
+    libgles2-mesa-dev \
+    libdrm-dev \
+    libx11-dev \
+    libx11-xcb-dev \
+    libxcb1-dev \
+    libxcb-glx0-dev \
+    libxcb-keysyms1-dev \
+    libxcb-randr0-dev \
+    libxcb-shape0-dev \
+    libxcb-sync-dev \
+    libxcb-xfixes0-dev \
+    libxrandr-dev \
+    libxinerama-dev \
+    libxcursor-dev \
+    libxdamage-dev \
+    libxext-dev \
+    libxfixes-dev \
+    libwayland-dev \
+    glslang-tools \
+    apitrace
+
+###############################################
+# SECTION 8 — FFmpeg + GStreamer + Media Stack
+###############################################
+echo "Installing media stack (FFmpeg + GStreamer + Intel Media)..."
+sudo apt install -y \
+    ffmpeg \
+    libx264-dev \
+    libx265-dev \
+    libvpx-dev \
+    libaom-dev \
+    libdav1d-dev \
+    libmp3lame-dev \
+    libopus-dev \
+    libvorbis-dev \
+    libtheora-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libwebp-dev \
+    libopenjp2-7-dev \
+    libtiff-dev \
+    gstreamer1.0-tools \
+    libgstreamer1.0-dev \
+    libgstreamer-plugins-base1.0-dev \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-ugly \
+    gstreamer1.0-libav \
+    gstreamer1.0-vaapi \
+    python3-gst-1.0 \
+    libva-dev \
+    intel-media-va-driver-non-free \
+    libvpl-dev \
+    libvpl-tools
+
+###############################################
+# SECTION 9 — Compute Stack (CLEANED)
+###############################################
+echo "Installing compute stack..."
+sudo apt install -y \
+    ocl-icd-opencl-dev \
+    libhwloc-dev \
+    libomp-dev \
+    libtbb-dev \
+    libdnnl-dev \
+    libmkl-full-dev \
+    libmkl-intel-thread \
+    libmkl-core \
+    libfabric-dev \
+    rdma-core \
+    libibverbs-dev \
+    libpsm2-dev \
+    libopencv-dev \
+    python3-opencv \
+    python3-numpy \
+    python3-scipy \
+    python3-pandas \
+    python3-protobuf \
+    python3-onnx \
+    python3-onnxruntime \
+    python3-tqdm \
+    python3-requests \
+    python3-pybind11 \
+    python3-pillow \
+    python3-yaml \
+    python3-setuptools \
+    python3-wheel \
+    python3-dev
+
+###############################################
+# SECTION 10 — Virtualization + Containers
+###############################################
+echo "Installing virtualization + containers..."
+sudo apt install -y \
+    qemu-system-x86 \
+    qemu-utils \
+    libvirt-daemon-system \
+    libvirt-clients \
+    virt-manager \
+    bridge-utils \
+    docker.io \
+    docker-compose
+
+###############################################
+# SECTION 11 — Performance + Benchmarking
+###############################################
+echo "Installing performance + benchmarking tools..."
+sudo apt install -y \
+    stress-ng \
+    sysbench \
+    glmark2 \
+    perf-tools-unstable
+
+###############################################
+# SECTION 12 — Optional / HPC / Experimental
+###############################################
+echo "Optional/HPC/experimental section (placeholder)..."
+
+###############################################
+# SECTION 13 — TBD Playground
+###############################################
+echo "Section 13 (TBD playground) reserved for future experiments..."
+
+
+###############################################
+# SECTION 14 — Additional Utilities + Networking
+###############################################
+echo "Installing additional utilities..."
+sudo apt install -y \
+    modemmanager \
+    network-manager \
+    openssh-client \
+    bat \
+    jq \
+    snapd \
+    mesa-utils
+
+  
+echo "=== All tools installed. Brian's Toolchain Ready ==="
+
+
 - Any other partial scripts you find
+##############################################
+####    APT PACKAGES INSTALLATION SCRIPT  ####
+##############################################
+
+####    UBUNTU 26.04    JULY 16 2026      ####
+
+
+#### "=== Brian's Linux Toolchain Installer ==="##############################################
+####    APT PACKAGES INSTALLATION SCRIPT  ####
+##############################################
+
+####    UBUNTU 26.04    JULY 16 2026      ####
+
+
+#### "=== Brian's Linux Toolchain Installer ==="
+#### "Updating package lists..."
+sudo apt update
+
+#   "Installing core build tools..."
+sudo apt install -y \
+    build-essential \
+    pkg-config \
+    dpkg \
+    dpkg-dev \
+    git \
+    gdb  
+    
+####"Installing networking + diagnostics..."
+sudo apt install -y \
+    traceroute \
+    nmap \
+    net-tools \ 
+    modemmanager \
+    network-manager \
+    iw \
+    rfkill \
+    ftp \
+    scp \
+    curl \
+    wget \
+    wireshark \
+    fail2ban \
+    linssid 
+
+#### "Installing system monitoring tools..."
+sudo apt install -y \
+    htop \
+    atop \
+    iftop \
+    fastfetch
+
+#### "Installing filesystem + disk tools..."
+sudo apt install -y \
+    mount \
+    gparted \
+    gdisk \
+    fdisk \
+    cryptsetup \
+    lvm2 \
+    efibootmgr \
+    mokutil \
+    dracut \
+    rsync \
+    tar \
+    timeshift
+
+#### "Installing search + text utilities..."
+sudo apt install -y \
+    ripgrep \
+    findutils \
+    tree \
+    locate \
+    sed \
+    grep \
+    awk \
+    less \
+    info
+
+#### "Installing editors + shells..."
+sudo apt install -y \
+    vim \
+    neovim \
+    micro \
+    fish
+
+####  "Installing programming languages..."
+sudo apt install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    nodejs \
+    npm \
+    mono-complete
+
+#### "Installing graphics + GPU tools..."
+sudo apt install -y \
+    vulkan-tools \
+    intel-gpu-tools \
+    libnss3 \
+    libnss3-tools
+
+#### "Installing kernel tools"
+sudo apt install -y \
+    bison \
+    flex \
+    libncurses-dei
+    
+#### "Installing misc tools..."
+sudo apt install -y \
+    synaptic \
+    zram-config \
+    ubuntu-restricted-addons \
+    ubuntu-restricted-extras \
+    libdvd-pkg 
+    
+    #### "Installing kernel development + compilation toolchain..."
+sudo apt install -y \
+    linux-headers-$(uname -r) \
+    linux-tools-common \
+    linux-tools-$(uname -r) \
+    linux-modules-extra-$(uname -r) \
+    linux-source \
+    kernel-package \
+    libelf-dev \
+    libssl-dev 
+sudo apt install -y \
+    libudev-dev \
+    libpci-dev \
+    libiberty-dev \
+    libcap-dev \
+    libcap-ng-dev \
+    libdw-dev \
+    libdw1 \
+    dwarves \
+    pahole \
+    bc \
+    kmod \
+    ccache \
+    flex \
+    bison 
+sudo apt install-y \ 
+    libncurses-dev \
+    libncurses5-dev \
+    libncursesw5-dev \
+    liblz4-tool \
+    libzstd-dev \
+    zstd \
+    lz4 \
+    libpopt-dev \
+    libtraceevent-dev \
+    libtracefs-dev \
+    libnuma-dev \
+    numactl \
+    libunwind-dev \
+    libmount-dev \
+    libfdt-dev \
+    libfuse-dev \
+    libglib2.0-dev 
+sudo apt install -y \
+    libdw-dev \
+    libaudit-dev \
+    libslang2-dev \
+    libreadline-dev \
+    libbfd-dev \
+    binutils-dev \
+    dwarves \
+    systemtap \
+    systemtap-runtime \
+    systemtap-sdt-dev \
+    elfutils \
+    elfutils-libelf-dev \
+    elfutils-binutils \
+    crash \
+    makedumpfile \
+    kexec-tools \
+    perf \
+    trace-cmd 
+sudo apt install -y
+    strace \
+    ltrace \
+    valgrind \
+    msr-tools \
+    cpuid \
+    hwloc \
+    powertop \
+    tuned \
+    thermald \
+    iotop \
+    sysstat \
+    auditd \
+    audit-tools \
+    dracut-core \
+    libbpf-dev \
+    bpfcc-tools \
+    bpftrace 
+sudo apt install -y \
+    libbpfcc \
+    libbpfcc-dev \
+    clang \
+    llvm \
+    llvm-dev \
+    clang-format \
+    clang-tidy \
+    clang-tools \
+    gcc \
+    g++ \
+    gcc-multilib \
+    g++-multilib \
+    lib32gcc-s1 \
+    lib32stdc++6 \
+    libasan6 \
+    libtsan2 \
+    libubsan1 \
+    liblsan0 \
+    libmpfr-dev \
+    libgmp-dev \
+    libisl-dev \
+    libz-dev 
+sudo apt install -y \
+    libzstd-dev \
+    liblzma-dev \
+    libevent-dev \
+    libjson-c-dev \
+    libyaml-dev \
+    libxml2-dev \
+    libffi-dev \
+    libedit-dev \
+    libboost-all-dev
+
+    
+
+echo "All tools installed successfully."
+echo "=== Brian's Toolchain Ready ==="
+
+
+#### "Updating package lists..."
+sudo apt update
+
+#   "Installing core build tools..."
+sudo apt install -y \
+    build-essential \
+    pkg-config \
+    dpkg \
+    dpkg-dev \
+    git \
+    gdb  
+    
+####"Installing networking + diagnostics..."
+sudo apt install -y \
+    traceroute \
+    nmap \
+    net-tools \ 
+    modemmanager \
+    network-manager \
+    iw \
+    rfkill \
+    ftp \
+    scp \
+    curl \
+    wget \
+    wireshark \
+    fail2ban \
+    linssid 
+
+#### "Installing system monitoring tools..."
+sudo apt install -y \
+    htop \
+    atop \
+    iftop \
+    fastfetch
+
+#### "Installing filesystem + disk tools..."
+sudo apt install -y \
+    mount \
+    gparted \
+    gdisk \
+    fdisk \
+    cryptsetup \
+    lvm2 \
+    efibootmgr \
+    mokutil \
+    dracut \
+    rsync \
+    tar \
+    timeshift
+
+#### "Installing search + text utilities..."
+sudo apt install -y \
+    ripgrep \
+    findutils \
+    tree \
+    locate \
+    sed \
+    grep \
+    awk \
+    less \
+    info
+
+#### "Installing editors + shells..."
+sudo apt install -y \
+    vim \
+    neovim \
+    micro \
+    fish
+
+####  "Installing programming languages..."
+sudo apt install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    nodejs \
+    npm \
+    mono-complete
+
+#### "Installing graphics + GPU tools..."
+sudo apt install -y \
+    vulkan-tools \
+    intel-gpu-tools \
+    libnss3 \
+    libnss3-tools
+
+#### "Installing kernel tools"
+sudo apt install -y \
+    bison \
+    flex \
+    libncurses-dei
+    
+#### "Installing misc tools..."
+sudo apt install -y \
+    synaptic \
+    zram-config \
+    ubuntu-restricted-addons \
+    ubuntu-restricted-extras \
+    libdvd-pkg 
+    
+    #### "Installing kernel development + compilation toolchain..."
+sudo apt install -y \
+    linux-headers-$(uname -r) \
+    linux-tools-common \
+    linux-tools-$(uname -r) \
+    linux-modules-extra-$(uname -r) \
+    linux-source \
+    kernel-package \
+    libelf-dev \
+    libssl-dev 
+sudo apt install -y \
+    libudev-dev \
+    libpci-dev \
+    libiberty-dev \
+    libcap-dev \
+    libcap-ng-dev \
+    libdw-dev \
+    libdw1 \
+    dwarves \
+    pahole \
+    bc \
+    kmod \
+    ccache \
+    flex \
+    bison 
+sudo apt install-y \ 
+    libncurses-dev \
+    libncurses5-dev \
+    libncursesw5-dev \
+    liblz4-tool \
+    libzstd-dev \
+    zstd \
+    lz4 \
+    libpopt-dev \
+    libtraceevent-dev \
+    libtracefs-dev \
+    libnuma-dev \
+    numactl \
+    libunwind-dev \
+    libmount-dev \
+    libfdt-dev \
+    libfuse-dev \
+    libglib2.0-dev 
+sudo apt install -y \
+    libdw-dev \
+    libaudit-dev \
+    libslang2-dev \
+    libreadline-dev \
+    libbfd-dev \
+    binutils-dev \
+    dwarves \
+    systemtap \
+    systemtap-runtime \
+    systemtap-sdt-dev \
+    elfutils \
+    elfutils-libelf-dev \
+    elfutils-binutils \
+    crash \
+    makedumpfile \
+    kexec-tools \
+    perf \
+    trace-cmd 
+sudo apt install -y
+    strace \
+    ltrace \
+    valgrind \
+    msr-tools \
+    cpuid \
+    hwloc \
+    powertop \
+    tuned \
+    thermald \
+    iotop \
+    sysstat \
+    auditd \
+    audit-tools \
+    dracut-core \
+    libbpf-dev \
+    bpfcc-tools \
+    bpftrace 
+sudo apt install -y \
+    libbpfcc \
+    libbpfcc-dev \
+    clang \
+    llvm \
+    llvm-dev \
+    clang-format \
+    clang-tidy \
+    clang-tools \
+    gcc \
+    g++ \
+    gcc-multilib \
+    g++-multilib \
+    lib32gcc-s1 \
+    lib32stdc++6 \
+    libasan6 \
+    libtsan2 \
+    libubsan1 \
+    liblsan0 \
+    libmpfr-dev \
+    libgmp-dev \
+    libisl-dev \
+    libz-dev 
+sudo apt install -y \
+    libzstd-dev \
+    liblzma-dev \
+    libevent-dev \
+    libjson-c-dev \
+    libyaml-dev \
+    libxml2-dev \
+    libffi-dev \
+    libedit-dev \
+    libboost-all-dev
+
+ ###############################################
+# SECTION 14 — Additional Utilities + Networking
+###############################################
+echo "Installing additional utilities..."
+sudo apt install -y \
+    modemmanager \
+    network-manager \
+    openssh-client \
+    bat \
+    jq \
+    snapd \
+    mesa-utils
+   
+
+echo "All tools installed successfully."
+echo "=== Brian's Toolchain Ready ==="
+
